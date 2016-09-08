@@ -1,9 +1,9 @@
 #lang racket
 
-;;; Student Name: Frankly Olin [change to your name]
+;;; Student Name: Aidan McLaughlin
 ;;;
 ;;; Check one:
-;;; [ ] I completed this assignment without assistance or external resources.
+;;; [X] I completed this assignment without assistance or external resources.
 ;;; [ ] I completed this assignment with assistance from ___
 ;;;     and/or using these external resources: ___
 
@@ -11,7 +11,7 @@
 
 ;; 1.  WRITE SQUARE:  given n, returns n^2.  Hint:  use *
 (define (square x)
-  your-code-here)
+  (* x x))
   
 (display (square 2)) (newline)  ;; -> 4
 
@@ -19,8 +19,12 @@
 ;;     could be the hypotenuse of a right triangle with the specified three side lengths
 ;;     Hint:  use = to compare numeric values
 
-(define (is-right-triangle)
-  your-code-here)
+(define (is-right-triangle side1 side2 hyp)
+  (if (= (+ (* side1 side1) (* side2 side2)) (* hyp hyp))
+      #t
+      #f
+      )
+  )
   
 (display (is-right-triangle 3 4 5)) (newline)  ;; -> #t
 (display (is-right-triangle 4 5 6)) (newline)  ;; -> #f
@@ -28,16 +32,25 @@
 ;; 3.  WRITE FACTORIAL:  given n, returns n!
 ;;     Hint:  recursion is your friend
 (define (fact n)
-  your-code-here)
+  (if (> n 1)
+      (* n (fact (- n 1)))
+      n
+      )
+  )
 
 (display (fact 1)) (newline) ;; -> 1
-(display (fact 2)) (newline) ;; -> 1
+(display (fact 2)) (newline) ;; -> 2
 
 ;; 4.  WRITE FIBONACCI:  given n, returns the nth fibonacci number as shown below
 ;;     Hint:  don't run this on really big numbers!
 (define (fib n)
-   your-code-here)
+  (cond [(= n 0) 0]
+        [(= n 1) 1]
+        [(+ (fib (- n 1)) (fib (- n 2)))]
+        )
+  )
 
+;; 1 + 1 -> 2 + 1 -> 3 + 2 -> 5 + 3 -> 8 + 5
 (display (fib 1)) (newline) ;; -> 1
 (display (fib 2)) (newline) ;; -> 1
 (display (fib 3)) (newline) ;; -> 2
@@ -48,7 +61,11 @@
 ;; 5.  WRITE a procedure that takes a list of numbers and returns the sum of those numbers
 ;;     Hint:  first, rest, cons
 (define (sum lst)
-  your-code-here)
+  (if (null? (rest lst))
+      (first lst)
+      (sum (cons (+ (first lst) (first (rest lst))) (rest (rest lst))))
+      )
+  )
 
 (display (sum '(1 2 3 4))) (newline) ;; -> 10
 (display (sum '(1 20 300))) (newline) ;; -> 321
@@ -56,6 +73,16 @@
 ;; 6.  WRITE a procedure that takes a list of numbers and returns the largest one.
 ;;     While there are solutions using scheme's built-in max, we were actually hoping you'd do something else...
 (define (my-max lst)
-  your-code-here)
+  (cond [(null? (rest lst)) (first lst)]
+        [(> (first lst) (first (rest lst)))
+         (my-max (cons (first lst) (rest (rest lst))))]
+        [(<= (first lst) (first (rest lst)))
+         (my-max (rest lst))]
+        )
+  )
 
 (display (my-max '(1 10 2 20 3))) (newline) ;; -> 20
+
+
+
+
