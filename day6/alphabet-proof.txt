@@ -1,0 +1,4 @@
+Proof that a larger automata alphabet isn't more powerful - Aidan McLaughlin - 9/22/16
+
+If each letter in our alphabet carries a possible instruction at each given node, I propose that a larger alphabet is analogous to greater baseN encoding but no greater number of possible states (assuming that power is proportional to information that can be described).
+Having two letters in our alphabet provides 2 paths (assuming DFA or NFA expanded to DFA) where 4 yields twice as many. That said, 2 letters can be used to construct equivalent paths to languages of greater letters, encoding the same information albeit less concisely. Therefore one could encode the same information in either language, one is just base2 and the other base4 (or base26 with the whole alphabet).
