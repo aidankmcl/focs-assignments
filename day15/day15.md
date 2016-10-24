@@ -6,11 +6,11 @@ You may edit your answers into this file, or add a separate file in the same dir
 If you add a separate file, please include the following at the top:
 
 ```
-Student Name: Frankly Olin [change to your name]
+Student Name: Aidan McLaughlin
 Check one:
 [ ] I completed this assignment without assistance or external resources.
-[ ] I completed this assignment with assistance from ___
-   and/or using these external resources: ___
+[X] I completed this assignment with assistance from ___
+   and/or using these external resources: __Wikipedia__ and started looking at __https://courses.csail.mit.edu/6.006/fall09/lecture_notes/lecture04.pdf__ 
 ```
 
 
@@ -260,19 +260,19 @@ Use the work you've done above to rebalance the tree.  Start at the newly insert
 
 
 ```
-             8
-         /       \
-        /         \
-     (5)           14
-     /\            /  \  
-    /  \          /    \ 
-   3    6        12     16  
+          ___ 8 __
+         /        \
+        /          \
+     (5)            14
+     /\            /   \  
+    /  \          /     \ 
+   3    6        12      16  
   /\     \       / \      /\ 
  /  \     \     /   \    /  \ 
 2    4     7   10   13  15   18
                              / \
                             /   \
-                           17  20
+                           17   20
 ```
 
 Answer: Exchange 5 for 6 and move 6 & 7 down to 5's right child.
