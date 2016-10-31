@@ -8,7 +8,7 @@ Date   : 2016-10-27
 License: MIT License
 """
 
-from queue import Queue
+from Queue import Queue
 
 
 class Graph(object):
@@ -21,6 +21,7 @@ class Graph(object):
     def __init__(self, nodes=[], edges=[]):
         self.nodes = nodes
         self.adjacency_list = {n: [tail for (head, tail) in edges if head == n] for n in nodes}
+
 
     def find_node(self, label):
         """Find a node by its label."""
@@ -42,6 +43,9 @@ class Node(object):
 
     def __init__(self, label):
         self.label = label
+        self.parent = None
+        self.parent_path = []
+        self.distance = float('inf')
 
     def __repr__(self):
         return self.label
@@ -56,22 +60,30 @@ def bfs(graph, start):
         visited.add(node)
         for tail in graph.successors(node):
             if tail not in visited:
+                tail.distance = node.distance + 1
+                tail.parent_path = node.parent_path + [node]
                 remaining_nodes.put(tail)
 
+    start.distance = 0
     remaining_nodes.put(start)
     while not remaining_nodes.empty():
         n = remaining_nodes.get()
         visit(n)
+
+    # For questions 1 & 2
+    print [(n, n.distance, n.parent_path) for n in graph.nodes]
+    # [(a, 0, []), (b, 1, [a]), (c, 1, [a]), (d, 2, [a, b]), (e, 2, [a, b])]
 
 
 def node_and_edge_labels_to_objects(node_labels, edge_labels):
     """Given a list of node labels, and a list of edges of the form (head_label, tail_label),
     create and return a list of Node instances with those labels, and a corresponding list of
     edges whose head and tail are those instances."""
-    
+
     nodes = [Node(label) for label in node_labels]
     find_node = {node.label: node for node in nodes}.get
     edges = [(find_node(h), find_node(t)) for (h, t) in edge_labels]
+
     return nodes, edges
 
 node_labels = ['a', 'b', 'c', 'd', 'e']
